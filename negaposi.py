@@ -52,4 +52,9 @@ for index, line in enumerate(your_tweets):
 
 		node = node.next
 
+sum_score = 0.0
+for i in score_list:
+	sum_score += float(i)
+average_score = sum_score / len(score_list)
+print "your_negaposi_score: "+ str(average_score)
 
