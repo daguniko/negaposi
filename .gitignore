@@ -37,3 +37,5 @@ tramp
 .cask/
 
 
+test2.py
+backup.py
