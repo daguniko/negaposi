@@ -31,11 +31,25 @@ for i in f:
 	dict.setdefault(a[1],{})["pos"] = a[2]
 	dict.setdefault(a[1],{})["score"] = a[3]
 
+# authentification
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
-
 your_tweets = api.user_timeline()
 
-print your_tweets
+# analysis
+for index, line in enumerate(your_tweets):
+	print index+1
+	print line.created_at
+	print line.text
+	print ""
+	node = m.parseToNode(line.text.encode("utf-8"))
+	while node:
+		if node.feature.split(",")[0] == '形容詞':
+			if node.feature.split(",")[6] in dict:
+				score_list.append(dict[node.feature.split(",")[6]]["score"].strip())
+
+		node = node.next
+
+
